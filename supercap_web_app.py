@@ -1,5 +1,4 @@
 import streamlit as st
-import matplotlib.pyplot as plt
 
 st.title("🔋 Supercapacitor Charge Time Calculator")
 
@@ -24,14 +23,3 @@ if st.button("Calculate"):
         # --- Display results ---
         st.success(f"Charge time: {t:.2f} s \n= {t/60:.2f} min \n= {t/3600:.2f} hr")
         st.info(f"Energy added: {delta_e:.2f} J ({delta_e/3600:.4f} Wh)")
-
-        # --- Plot ---
-        t_values = [i * t / 100 for i in range(101)]
-        v_values = [V_initial + (V_final - V_initial) * (ti / t) for ti in t_values]
-        fig, ax = plt.subplots()
-        ax.plot(t_values, v_values)
-        ax.set_xlabel("Time (s)")
-        ax.set_ylabel("Voltage (V)")
-        ax.set_title("Supercapacitor Voltage vs. Time (Constant Current)")
-        ax.grid(True)
-        st.pyplot(fig)
